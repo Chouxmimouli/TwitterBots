@@ -1,2 +1,1 @@
-
-    await delay(200)
+headless: false,

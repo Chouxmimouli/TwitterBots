@@ -1,11 +1,12 @@
 import puppeteer from 'puppeteer';
 const delay = ms => new Promise(res => setTimeout(res, ms));
 let CanBreak = false;
+let UnlikeCount = 0;
 
 (async () => {
   // Launch the browser and open a new blank page
   const browser = await puppeteer.launch({
-    headless: true,
+    headless: false,
     defaultViewport: null,
     args:['--start-maximized']
    });
@@ -36,5 +37,7 @@ let CanBreak = false;
   while (true) {
     await page.waitForSelector(Unlike, {visible: true, timeout: 10000 })
     await page.click(Unlike);
+    UnlikeCount++;
+    console.log(`The number of tweets unliked is: ${UnlikeCount}`);
   }
 })();
